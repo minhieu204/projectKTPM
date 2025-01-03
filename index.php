@@ -60,5 +60,9 @@
             require_once('Controllers/danhmucController.php');
             break;
         }
+        case 'donhang':{
+            require_once('Controllers/donhangController.php');
+            break;
+        }
     }
 ?>
