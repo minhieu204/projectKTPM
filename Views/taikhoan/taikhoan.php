@@ -9,7 +9,10 @@
     <!-- Content -->
     <div class="content">
         <h1 class="mb-4">Quản Lý Tài khoản</h1>
-        <a href="index.php?controller=danhmuc&action=add"><button class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Thêm tài khoản</button></a>
+        <div class="btn">
+            <a href="index.php?controller=taikhoan&action=add"><button class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Thêm tài khoản</button></a>
+            <a href="index.php?controller=taikhoan&action=add"><button class="btn btn-success mb-3"><i class="fas fa-edit"></i> Tài khoản của tôi</button></a>
+        </div>
         <table class="table table-bordered">
             <thead class="table-dark">
                 <tr>
