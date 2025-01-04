@@ -18,6 +18,21 @@ class Taikhoan{
             $stmt->execute(); 
             return $stmt;
     }
+    public function getone(){
+        $sql = "SELECT * FROM user WHERE Id_user=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(1, $this->Id_user);
+        $stmt->execute(); 
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->Fullname = $row['Fullname'];
+            $this->Password = $row['Password'];
+            $this->Email = $row['Email'];
+            return true; 
+        } else {
+            return false;
+        }
+    }
     public function post(){
         $sql = "INSERT INTO user SET Fullname=:Fullname, Password=:Password, Email=:Email, Permission=:Permission";
         $stmt = $this->conn->prepare($sql);
@@ -45,6 +60,45 @@ class Taikhoan{
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
     
         return $result['count'] > 0;
+    }
+    public function check() {
+        $sql = "SELECT COUNT(*) as count FROM user WHERE Id_user=:Id_user";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':Id_user', $this->Id_user);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        return $result['count'] > 0;
+    }
+    public function put(){
+        $sql = "UPDATE user SET Fullname=:Fullname, Password=:Password, Email=:Email WHERE Id_user=:Id_user";
+        $stmt = $this->conn->prepare($sql);
+        $this->Id_user = htmlspecialchars(strip_tags($this->Id_user));
+        $this->Fullname = htmlspecialchars(strip_tags($this->Fullname));
+        $this->Password = htmlspecialchars(strip_tags($this->Password));
+        $this->Email = htmlspecialchars(strip_tags($this->Email));
+        $stmt->bindParam(':Fullname',$this->Fullname);
+        $stmt->bindParam(':Password',$this->Password);
+        $stmt->bindParam(':Email',$this->Email);
+        $stmt->bindParam(':Id_user',$this->Id_user);
+
+        if($stmt->execute()){
+            return true;
+        }
+        printf("Error %s.\n" ,$stmt->error);
+        return false;
+    }
+    public function delete(){
+        $sql = "DELETE FROM user WHERE Id_user=:Id_user";
+        $stmt = $this->conn->prepare($sql);
+        $this->Id_user = htmlspecialchars(strip_tags($this->Id_user));
+
+        $stmt->bindParam(':Id_user',$this->Id_user);
+        if($stmt->execute()){
+            return true;
+        }
+        printf("Error %s.\n" ,$stmt->error);
+        return false;
     }
 }
 ?>
