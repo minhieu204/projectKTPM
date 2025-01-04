@@ -111,5 +111,9 @@ switch ($controller) {
         require_once('Controllers/taikhoanController.php');
         break;
     }
+    case 'danhgia': {
+        require_once('Controllers/danhgiaController.php');
+        break;
+    }
 }
 ?>
