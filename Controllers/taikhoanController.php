@@ -25,19 +25,34 @@ switch ($action) {
                     'Password' => $Pass,
                     'Permission' => $Perm,
                 ];
-
                 $response_data = callApi('http://localhost/projectKTPM/api/taikhoan/post.php', 'POST', $postData);
 
                 if (isset($response_data['status']) && $response_data['status'] == 201) {
-                    echo "<script>
-                                alert('Thêm Tài khoản thành công');
-                                window.location.href='index.php?controller=taikhoan';
-                            </script>";
+                    if($Perm=="Customer"){
+                    $user_id = $response_data['user_id'];
+                    $postData2 = [
+                        'id' => $user_id,
+                    ];
+                    $response_data2 = callApi('http://localhost/projectKTPM/api/khachhang/post.php', 'POST', $postData2);
+
+                    if (isset($response_data2['status']) && $response_data2['status'] == 201) {
+                        $_SESSION['susMessage'] = "Tài khoản đã được tạo thành công!!!";
+                    header("Location: index.php?controller=taikhoan");
+                    exit();
+                    } else {
+                        $_SESSION['eMessage'] = "Lỗi thêm khách hàng: ". $response_data2['message'] ."";
+                        header("Location: index.php?controller=taikhoan");
+                        exit();
+                    }}
+                    else{
+                        $_SESSION['susMessage'] = "Tài khoản đã được tạo thành công!!!";
+                        header("Location: index.php?controller=taikhoan");
+                        exit();
+                    }
                 } else {
-                    echo "<script>
-                                alert('Lỗi thêm Tài khoản: " . $response_data['message'] . "');
-                                window.location.href='index.php?controller=taikhoan';
-                            </script>";
+                    $_SESSION['eMessage'] = "Lỗi thêm tài khoản: ". $response_data['message'] ."";
+                    header("Location: index.php?controller=taikhoan");
+                    exit();
                 }
             }
         }
@@ -71,15 +86,13 @@ switch ($action) {
                 $response_data = callApi('http://localhost/projectKTPM/api/taikhoan/put.php', 'PUT', $putData);
 
                 if (isset($response_data['status']) && $response_data['status'] == 200) {
-                    echo "<script>
-                                alert('Sửa Tài khoản thành công');
-                                window.location.href='index.php?controller=taikhoan';
-                            </script>";
+                    $_SESSION['susMessage'] = "Tài khoản đã được sửa thành công!!!";
+                    header("Location: index.php?controller=taikhoan");
+                    exit();
                 } else {
-                    echo "<script>
-                                alert('Lỗi sửa Tài khoản: " . $response_data['message'] . "');
-                                window.location.href='index.php?controller=taikhoan';
-                            </script>";
+                    $_SESSION['eMessage'] = "Lỗi sửa tài khoản: ". $response_data['message'] ."";
+                    header("Location: index.php?controller=taikhoan");
+                    exit();
                 }
             } else {
                 $checkEmailData = [
@@ -100,15 +113,13 @@ switch ($action) {
                     $response_data = callApi('http://localhost/projectKTPM/api/taikhoan/put.php', 'PUT', $putData);
 
                     if (isset($response_data['status']) && $response_data['status'] == 201) {
-                        echo "<script>
-                                alert('Sửa Tài khoản thành công');
-                                window.location.href='index.php?controller=taikhoan';
-                            </script>";
+                        $_SESSION['susMessage'] = "Tài khoản đã được sửa thành công!!!";
+                        header("Location: index.php?controller=taikhoan");
+                        exit();
                     } else {
-                        echo "<script>
-                                alert('Lỗi sửa Tài khoản: " . $response_data['message'] . "');
-                                window.location.href='index.php?controller=taikhoan';
-                            </script>";
+                        $_SESSION['eMessage'] = "Lỗi sửa tài khoản: ". $response_data['message'] ."";
+                header("Location: index.php?controller=taikhoan");
+                exit();
                     }
                 }
             }
@@ -116,23 +127,31 @@ switch ($action) {
         require_once('Views/taikhoan/edit_acc.php');
         break;
     }
-    case 'delete':{
-        if(isset($_GET['id'])){
+    case 'delete': {
+        if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $deleteData = [
                 'Id_user' => $id
             ];
+            $deleteData2 = [
+                'id' => $id
+            ];
             $response_data = callApi('http://localhost/projectKTPM/api/taikhoan/delete.php', 'DELETE', $deleteData);
-            if (isset($response_data['status']) && $response_data['status'] == 200) {
-                echo "<script>
-                        alert('Xóa Tài khoản thành công');
-                        window.location.href='index.php?controller=taikhoan';
-                    </script>";
+            if ((isset($response_data['status']) && $response_data['status'] == 200)) {
+                $response_data2 = callApi('http://localhost/projectKTPM/api/khachhang/delete.php', 'DELETE', $deleteData2);
+                if ((isset($response_data['status']) && $response_data['status'] == 200)) {
+                $_SESSION['susMessage'] = "Tài khoản đã được xóa thành công!!!";
+                header("Location: index.php?controller=taikhoan");
+                exit();
+            } else{
+                 $_SESSION['eMessage'] = "Lỗi xóa Khách hàng: ". $response_data2['message'] ."";
+                header("Location: index.php?controller=taikhoan");
+                exit();
+            }
             } else {
-                echo "<script>
-                        alert('Lỗi xóa Tài khoản: " . $response_data['message'] . "');
-                        window.location.href='index.php?controller=taikhoan';
-                    </script>";
+                $_SESSION['eMessage'] = "Lỗi xóa Tài khoản: ". $response_data['message'] ."";
+                header("Location: index.php?controller=taikhoan");
+                exit();
             }
         }
         break;

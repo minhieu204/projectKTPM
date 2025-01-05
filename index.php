@@ -87,6 +87,7 @@
 
 </html>
 <?php
+session_start();
 require_once 'Views/header.php';
 require_once 'api/ApiService.php';
 if (isset($_GET['controller'])) {
@@ -121,6 +122,10 @@ switch ($controller) {
     }
     case 'slider': {
         require_once('Controllers/sliderController.php');
+        break;
+    }
+    case 'khachhang': {
+        require_once('Controllers/khachhangController.php');
         break;
     }
 }

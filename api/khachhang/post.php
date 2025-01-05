@@ -5,7 +5,7 @@
     header('Access-Control-Allow-Headers:Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
 
     include_once('../../config/database.php');
-    include_once('../../Models/taikhoan.php');
+    include_once('../../Models/khachhang.php');
 
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         header("HTTP/1.0 405 Method Not Allowed");
@@ -16,13 +16,12 @@
         exit();
     }
 
-
     $db = new database;
     $connect = $db->connect();
 
-    $taikhoan = new taikhoan($connect);
+    $khachhang = new Khachhang($connect);
     $data = json_decode(file_get_contents("php://input"));
-    if (!isset($data->Fullname,$data->Email,$data->Password,$data->Permission)) {
+    if (!isset($data->id)) {
         header("HTTP/1.0 400 Bad Request");
         echo json_encode([
             'status' => 400,
@@ -31,20 +30,15 @@
         exit();
     }
 
-    $taikhoan->Email = $data->Email;
-    $taikhoan->Password = $data->Password;
-    $taikhoan->Fullname = $data->Fullname;
-    $taikhoan->Permission = $data->Permission;
+    $khachhang->id = $data->id;
     
-    if ($taikhoan->post()) {
-        $lastInsertId = $connect->lastInsertId();
+    if ($khachhang->post()) {
         header("HTTP/1.0 201 Created");
         echo json_encode([
             'status' => 201,
-            'message' => 'Tài khoản đã được tạo thành công.',
-            'user_id' => $lastInsertId
+            'message' => 'Tài khoản đã được tạo thành công.'
         ]);
-    }  else {
+    } else {
         header("HTTP/1.0 500 Internal Server Error");
         echo json_encode([
             'status' => 500,
