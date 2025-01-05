@@ -7,9 +7,9 @@
         <a href="index.php?controller=donhang"><i class="fas fa-shopping-cart"></i> Quản Lý Đơn Hàng</a>
         <a href="index.php?controller=danhmuc"><i class="fas fa-list"></i> Quản Lý Danh Mục</a>
         <a href="khach-hang.php"><i class="fas fa-users"></i> Quản Lý Khách Hàng</a>
-        <a href="slider.php"><i class="fas fa-images"></i> Quản Lý Slider</a>
+        <a href="index.php?controller=slider"><i class="fas fa-images"></i> Quản Lý Slider</a>
         <a href="index.php?controller=danhgia"><i class="fas fa-star"></i> Quản Lý Đánh Giá</a>
-        <a href="ds-cua-hang.php"><i class="fas fa-store"></i> Quản Lý Cửa Hàng</a>
+        <a href="index.php?controller=cuahang"><i class="fas fa-store"></i> Quản Lý Cửa Hàng</a>
         <a href="thong-ke.php"><i class="fas fa-chart-bar"></i> Thống Kê</a>
     </div>
 </div>

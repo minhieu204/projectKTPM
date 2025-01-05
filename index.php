@@ -115,5 +115,13 @@ switch ($controller) {
         require_once('Controllers/danhgiaController.php');
         break;
     }
+    case 'cuahang': {
+        require_once('Controllers/cuahangController.php');
+        break;
+    }
+    case 'slider': {
+        require_once('Controllers/sliderController.php');
+        break;
+    }
 }
 ?>
