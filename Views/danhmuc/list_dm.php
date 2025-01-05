@@ -15,7 +15,7 @@
                 <tr>
                     <th>STT</th>
                     <th>Tên danh mục con</th>
-                    <th>Tên loại sản phẩm</th>
+                    <th>Tên danh mục cha</th>
                     <th>Sửa</th>
                     <th>Xóa</th>
                 </tr>

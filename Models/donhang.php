@@ -50,6 +50,20 @@
             return false;
         }
 
+        public function updatestt(){
+            $sql = "UPDATE tbl_donhang SET tinhtrang=0
+                    WHERE iddonhang=:iddonhang";
+            $stmt = $this->conn->prepare($sql);
+            $this->iddanhmuccon = htmlspecialchars(strip_tags($this->iddonhang));
+
+            $stmt->bindParam(':iddonhang',$this->iddonhang);
+            if($stmt->execute()){
+                return true;
+            }
+            printf("Error %s.\n" ,$stmt->error);
+            return false;
+        }
+
         public function exists() {
             $sql = "SELECT COUNT(*) FROM tbl_donhang WHERE iddonhang = ?";
             $stmt = $this->conn->prepare($sql);

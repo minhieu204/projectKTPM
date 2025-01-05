@@ -37,10 +37,29 @@
                     $chitietdonhangs = [];
                     $message = 'Không tìm thấy đơn hàng nào';
                 }
-            }
-
-            
+            }           
             require_once('Views/donhang/list_ctdh.php');
+            break;
+        }
+        case 'updatestt':{
+            if(isset($_GET['id'])){
+                $id = $_GET['id'];
+                $putData = [
+                    'iddonhang' => $id
+                ];
+                $response_data = callApi('http://localhost/projectKTPM/api/donhang/updatestt.php', 'PUT', $putData);
+                if (isset($response_data['status']) && $response_data['status'] == 200) {
+                    echo "<script>
+                            alert('Cập nhật đơn hàng thành công');
+                            window.location.href='index.php?controller=donhang';
+                        </script>";
+                } else {
+                    echo "<script>
+                            alert('Lỗi cập nhật đơn hàng: " . $response_data['message'] . "');
+                            window.location.href='index.php?controller=donhang';
+                        </script>";
+                }
+            }
             break;
         }
         default:{

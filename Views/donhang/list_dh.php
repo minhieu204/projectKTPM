@@ -19,8 +19,8 @@
                     <th>Địa chỉ</th>
                     <th>Ngày đặt</th>
                     <th>Tình trạng</th>
-                    <th>Quản lý</th>
                     <th>Hủy đơn</th>
+                    <th>Quản lý</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,12 +36,29 @@
                     <td><?php echo $value['so_dien_thoai']; ?></td>
                     <td><?php echo $value['dia_chi']; ?></td>
                     <td><?php echo $value['ngaydat']; ?></td>
-                    <td><?php echo $value['tinhtrang']; ?></td>
+                    <?php
+                    if($value["tinhtrang"]==1){
+                        $status="Đơn hàng mới";
+                    ?>
+                        <td>
+                        <a style="text-decoration: none;" onclick="return confirm('Bạn có muốn cập nhật hàng không?');" href="index.php?controller=donhang&action=updatestt&id=<?php echo $value['iddonhang']; ?>"><?php echo $status ?></a>
+                        </td>
+                        <td>
+                        <a onclick="return confirm('Bạn có muốn hủy đơn hàng không?');" href="index.php?controller=donhang&action=delete&id=<?php echo $value['iddonhang']; ?>"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hủy</button></a>
+                        </td>
+                    <?php
+                    }else{
+                        $status="Đã cập nhật";
+                    ?>
+                        <td><?php echo $status ?></td>
+                        <td>
+                        <button class="btn btn-danger btn-sm" disabled><i class="fas fa-trash"></i> Hủy</button>
+                        </td>
+                    <?php
+                    }
+                    ?>
                     <td>
                         <a href="index.php?controller=donhang&action=see&id=<?php echo $value['iddonhang']; ?>"><button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Xem đơn</button></a>   
-                    </td>
-                    <td>
-                    <a onclick="return confirm('Bạn có muốn hủy đơn hàng không?');" href="index.php?controller=donhang&action=delete&id=<?php echo $value['iddonhang']; ?>"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hủy</button></a>
                     </td>
                 </tr>
                 <?php
