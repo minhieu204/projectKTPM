@@ -14,7 +14,7 @@
         <div class="btn">
             <a href="index.php?controller=taikhoan&action=add"><button class="btn btn-primary mb-3"><i
                         class="fas fa-plus"></i> Thêm tài khoản</button></a>
-            <a href="index.php?controller=taikhoan&action=add"><button class="btn btn-success mb-3"><i
+            <a href="index.php"><button class="btn btn-success mb-3"><i
                         class="fas fa-edit"></i> Tài khoản của tôi</button></a>
         </div>
         <table class="table table-bordered">

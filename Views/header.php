@@ -18,10 +18,10 @@
 <nav class="navbar ">
     <div class="navcontent">
         <div class="ctheader">
-            <a class="" href="#">Xin chào,</a>
+            <a class="" href="index.php">Xin chào, <?php echo $_SESSION['fullname'] ?></a>
         </div>
         <div class="ctlogout">
-            <a class="" href="#">Đăng xuất</a>
+            <a class="" href="Controllers/logout.php">Đăng xuất</a>
         </div>
     </div>
 </nav>

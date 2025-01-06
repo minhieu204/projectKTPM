@@ -50,7 +50,7 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Nhập email" name="txtEmail"
-                       value="<?php echo isset($Email) ? $Email : ''; ?>" required>
+                       value="<?php echo isset($Email) ? $Email : ''; ?>" required autocomplete="off">
             </div>
             <div class="mb-3">
                 <label for="password1" class="form-label">Mật khẩu</label>

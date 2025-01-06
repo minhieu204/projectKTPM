@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if (!isset($_SESSION["Admin"])) {
+    header("location:Controllers/loginController.php");
+    exit;
+}else{$ID= $_SESSION["Admin"];}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +98,6 @@
 
 </html>
 <?php
-session_start();
 require_once 'Views/header.php';
 require_once 'api/ApiService.php';
 if (isset($_GET['controller'])) {
@@ -133,6 +140,10 @@ switch ($controller) {
     }
     case 'thongke':{
         require_once('Controllers/thongkeController.php');
+        break;
+    }
+    default: {
+        require_once('Controllers/adminController.php');
         break;
     }
 }
