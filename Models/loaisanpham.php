@@ -1,8 +1,6 @@
 <?php
     class loaisanpham{
         private $conn;
-        public $idloaisanpham;
-        public $tenloaisanpham;
 
         public function __construct($db){
             $this->conn = $db;

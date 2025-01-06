@@ -9,9 +9,7 @@
         public $size;
         public $motasanpham;
         public $idloaisanpham;
-        public $tenloaisanpham;
         public $iddanhmuccon;
-        public $tendanhmuccon;
         public $soluong;
         public function __construct($db){
             $this->conn = $db;

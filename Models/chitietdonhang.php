@@ -1,12 +1,7 @@
 <?php
     class chitietdonhang{
         private $conn;
-        public $idctdh;
-        public $idsanpham;
         public $madon;
-        public $soluongCT;
-        public $tensanpham;
-        public $giasanpham;
 
         public function __construct($db){
             $this->conn = $db;

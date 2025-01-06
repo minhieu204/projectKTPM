@@ -58,28 +58,28 @@
                 ?>
             </tbody>
         </table>
+        <nav aria-label="Page navigation example" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <?php if ($currentPage > 1): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?controller=sanpham&page=<?php echo $currentPage - 1; ?>">&laquo;</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <li class="page-item <?php echo ($i === $currentPage) ? 'active' : ''; ?>">
+                        <a class="page-link" href="index.php?controller=sanpham&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <?php if ($currentPage < $totalPages): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="index.php?controller=sanpham&page=<?php echo $currentPage + 1; ?>">&raquo;</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
     </div>
-    <nav aria-label="Page navigation example" class="mt-4">
-    <ul class="pagination justify-content-center">
-        <?php if ($currentPage > 1): ?>
-            <li class="page-item">
-                <a class="page-link" href="index.php?controller=sanpham&page=<?php echo $currentPage - 1; ?>">&laquo;</a>
-            </li>
-        <?php endif; ?>
-
-        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-            <li class="page-item <?php echo ($i === $currentPage) ? 'active' : ''; ?>">
-                <a class="page-link" href="index.php?controller=sanpham&page=<?php echo $i; ?>"><?php echo $i; ?></a>
-            </li>
-        <?php endfor; ?>
-
-        <?php if ($currentPage < $totalPages): ?>
-            <li class="page-item">
-                <a class="page-link" href="index.php?controller=sanpham&page=<?php echo $currentPage + 1; ?>">&raquo;</a>
-            </li>
-        <?php endif; ?>
-    </ul>
-</nav>
 
 </body>
 </html>
