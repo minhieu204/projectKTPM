@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION["Admin"])) {
     header("location:Controllers/loginController.php");
     exit;
-}else{$ID= $_SESSION["Admin"];}
+}
 
 require_once 'Views/header.php';
 require_once 'api/ApiService.php';
