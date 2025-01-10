@@ -47,7 +47,7 @@
         header("HTTP/1.0 500 Internal Server Error");
         echo json_encode([
             'status' => 500,
-            'message' => 'Không thể tạo sản phẩm.'
+            'message' => 'Không thể tạo cửa hàng.'
         ]);
     }
 ?>

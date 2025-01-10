@@ -100,7 +100,6 @@
             $stmt->bindParam(1, $this->idcuahang);
             $stmt->execute();
             $row = $stmt->fetchColumn();
-            
             return $row > 0;  
         }        
     }   

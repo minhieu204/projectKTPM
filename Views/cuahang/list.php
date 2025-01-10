@@ -40,7 +40,7 @@
                         <a href="index.php?controller=cuahang&action=edit&id=<?php echo $value['idcuahang']; ?>"><button class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Sửa</button></a>   
                     </td>
                     <td>
-                    <a onclick="return confirm('Bạn có muốn xóa sản phẩm không?');" href="index.php?controller=cuahang&action=delete&id=<?php echo $value['idcuahang']; ?>"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Xóa</button></a>
+                    <a onclick="return confirm('Bạn có muốn xóa cửa hàng không?');" href="index.php?controller=cuahang&action=delete&id=<?php echo $value['idcuahang']; ?>"><button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Xóa</button></a>
                     </td>
                 </tr>
                 <?php

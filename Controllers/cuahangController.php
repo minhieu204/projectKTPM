@@ -106,7 +106,7 @@
                 $products = $data['data'];
             } else {
                 $products = [];
-                $message = 'Không tìm thấy sản phẩm nào';
+                $message = 'Không tìm thấy cửa hàng nào';
             }
             require_once('Views/cuahang/list.php');
             break;
