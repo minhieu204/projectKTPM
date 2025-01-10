@@ -122,15 +122,6 @@
             }
             break;
         }
-        case 'search':{
-            if(isset($_GET['txtTimkiem'])){
-                $key = $_GET['txtTimkiem'];
-                $table = "tbl_sanpham";
-                $datasearch = $db->searchData($table, $key);
-            }
-            require_once('Views/sanpham/search_sp.php');
-            break;
-        }
         default:{
 
             $data = callApi('http://localhost/projectKTPM/api/sanpham/get.php');
@@ -141,23 +132,17 @@
                 $products = [];
                 $message = 'Không tìm thấy sản phẩm nào';
             }
-            // Số lượng sản phẩm trên mỗi trang
             $productsPerPage = 5;
 
-            // Tổng số sản phẩm (lấy từ cơ sở dữ liệu)
             $totalProducts = count($products);
 
-            // Tính tổng số trang
             $totalPages = ceil($totalProducts / $productsPerPage);
 
-            // Trang hiện tại (lấy từ URL hoặc mặc định là 1)
             $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-            // Xác định sản phẩm bắt đầu và kết thúc
             $start = ($currentPage - 1) * $productsPerPage;
             $end = min($start + $productsPerPage, $totalProducts);
 
-            // Lấy danh sách sản phẩm hiển thị trên trang hiện tại
             $productsOnPage = array_slice($products, $start, $productsPerPage);
             require_once('Views/sanpham/list_sp.php');
             break;
