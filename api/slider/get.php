@@ -37,7 +37,7 @@
         header("HTTP/1.0 404 Not Found");
         echo json_encode([
             'status' => 404,
-            'message' => 'Không tìm thấy sản phẩm nào'
+            'message' => 'Không tìm thấy slider nào'
         ]);
     }
 ?>

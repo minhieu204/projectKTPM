@@ -26,7 +26,7 @@
         header("HTTP/1.1 400 Bad Request");
         echo json_encode([
             'status' => 400,
-            'message' => 'Thiếu ID cửa hàng cần xóa.'
+            'message' => 'Thiếu ID slider cần xóa.'
         ]);
         exit();
     }
@@ -37,7 +37,7 @@
         header("HTTP/1.0 404 Not Found");
         echo json_encode([
             'status' => 404,
-            'message' => 'cửa hàng không tồn tại.'
+            'message' => 'slider không tồn tại.'
         ]);
         exit();
     }
@@ -45,13 +45,13 @@
     if($slider->delete()){
         echo json_encode([
         'status' => 200,
-        'message' => 'Xóa cửa hàng thành công.'
+        'message' => 'Xóa slider thành công.'
         ]);
     }else{
         header("HTTP/1.1 500 Internal Server Error");
         echo json_encode([
             'status' => 500,
-            'message' => 'Xóa cửa hàng không thành công.'
+            'message' => 'Xóa slider không thành công.'
         ]);
     }
 ?>

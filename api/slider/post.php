@@ -37,13 +37,13 @@
         header("HTTP/1.0 201 Created");
         echo json_encode([
             'status' => 201,
-            'message' => 'Cửa hàng đã được tạo thành công.'
+            'message' => 'slider đã được tạo thành công.'
         ]);
     } else {
         header("HTTP/1.0 500 Internal Server Error");
         echo json_encode([
             'status' => 500,
-            'message' => 'Không thể tạo sản phẩm.'
+            'message' => 'Không thể tạo slider.'
         ]);
     }
 ?>

@@ -90,7 +90,7 @@
                 $products = $data['data'];
             } else {
                 $products = [];
-                $message = 'Không tìm thấy sản phẩm nào';
+                $message = 'Không tìm thấy slider nào';
             }
             require_once('Views/slider/list.php');
             break;

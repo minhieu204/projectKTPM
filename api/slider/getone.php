@@ -30,14 +30,14 @@
             header("HTTP/1.0 404 Not Found");
             echo json_encode([
                 'status' => 404,
-                'message' => 'Cửa hàng không tồn tại.'
+                'message' => 'slider không tồn tại.'
             ]);
         }
     }else{
         header("HTTP/1.0 404 Not Found");
         echo json_encode([
             'status' => 404,
-            'message' => 'ID Cửa hàng không được cung cấp.'
+            'message' => 'ID slider không được cung cấp.'
         ]);
     }
 ?>

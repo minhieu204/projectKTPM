@@ -36,7 +36,7 @@
         header("HTTP/1.0 404 Not Found");
         echo json_encode([
             'status' => 404,
-            'message' => 'Sản phẩm không tồn tại.'
+            'message' => 'slider không tồn tại.'
         ]);
         exit();
     }
@@ -46,13 +46,13 @@
     if ($slider->put()) {
         echo json_encode([
             'status' => 200,
-            'message' => 'Cập nhật sản phẩm thành công.'
+            'message' => 'Cập nhật slider thành công.'
         ]);
     } else {
         header("HTTP/1.0 500 Internal Server Error");
         echo json_encode([
             'status' => 500,
-            'message' => 'Không thể cập nhật sản phẩm.'
+            'message' => 'Không thể cập nhật slider.'
         ]);
     }
 ?>
