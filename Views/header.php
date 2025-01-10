@@ -109,7 +109,7 @@
                 <a class="" href="index.php">Xin chào, <?php echo $_SESSION['fullname'] ?></a>
             </div>
             <div class="ctlogout">
-                <a class="" href="Controllers/logout.php">Đăng xuất</a>
+                <a class="" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?');" href="Controllers/logout.php">Đăng xuất</a>
             </div>
         </div>
 </nav>
