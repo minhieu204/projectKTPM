@@ -123,29 +123,44 @@
             break;
         }
         default:{
+            if(isset($_GET['search'])){
+                $search = $_GET['search'];
+                $data = callApi("http://localhost/projectKTPM/api/sanpham/search.php?search=$search");
 
-            $data = callApi('http://localhost/projectKTPM/api/sanpham/get.php');
+                if (isset($data['data']) && count($data['data']) > 0) {
+                    $datasearch = $data['data'];
+                    require_once('Views/sanpham/search_sp.php');
+                    break;
+                } else {
+                    echo "<script>
+                            alert('Không tìm thấy sản phẩm nào');
+                            window.location.href='index.php?controller=sanpham';
+                        </script>";
+                }
+            }else{
+                $data = callApi('http://localhost/projectKTPM/api/sanpham/get.php');
 
-            if (isset($data['data']) && count($data['data']) > 0) {
-                $products = $data['data'];
-            } else {
-                $products = [];
-                $message = 'Không tìm thấy sản phẩm nào';
+                if (isset($data['data']) && count($data['data']) > 0) {
+                    $products = $data['data'];
+                } else {
+                    $products = [];
+                    $message = 'Không tìm thấy sản phẩm nào';
+                }
+                $productsPerPage = 5;
+
+                $totalProducts = count($products);
+
+                $totalPages = ceil($totalProducts / $productsPerPage);
+
+                $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+                $start = ($currentPage - 1) * $productsPerPage;
+                $end = min($start + $productsPerPage, $totalProducts);
+
+                $productsOnPage = array_slice($products, $start, $productsPerPage);
+                require_once('Views/sanpham/list_sp.php');
+                break;
             }
-            $productsPerPage = 5;
-
-            $totalProducts = count($products);
-
-            $totalPages = ceil($totalProducts / $productsPerPage);
-
-            $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-            $start = ($currentPage - 1) * $productsPerPage;
-            $end = min($start + $productsPerPage, $totalProducts);
-
-            $productsOnPage = array_slice($products, $start, $productsPerPage);
-            require_once('Views/sanpham/list_sp.php');
-            break;
         }
     }
 

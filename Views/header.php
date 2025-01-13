@@ -82,6 +82,9 @@
         .ctheader a:hover{
             opacity: 0.6;
         }
+        .search-input {
+            width: 400px; /* Đặt chiều rộng cố định lớn hơn */
+        }
     </style>
 </head>
 
@@ -108,11 +111,19 @@
             <div class="ctheader">
                 <a class="" href="index.php">Xin chào, <?php echo $_SESSION['fullname'] ?></a>
             </div>
+            <?php if (isset($_GET['controller']) && in_array($_GET['controller'], ['sanpham', 'danhmuc', 'khachhang', 'donhang', 'taikhoan', 'cuahang', 'danhgia']) && !isset($_GET['action'])): ?>
+            <div class="search-bar">
+                <form method="GET" class="d-flex align-items-center">
+                    <input type="hidden" name="controller" value="<?php echo htmlspecialchars($_GET['controller']); ?>">
+                    <input class="form-control me-2 search-input" type="search" name="search" placeholder="Tìm kiếm..." aria-label="Search" value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                </form>
+            </div>
+            <?php endif; ?>
             <div class="ctlogout">
                 <a class="" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?');" href="Controllers/logout.php">Đăng xuất</a>
             </div>
         </div>
-</nav>
+    </nav>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
