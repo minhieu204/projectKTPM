@@ -157,6 +157,35 @@ switch ($action) {
         break;
     }
     default: {
+        if(isset($_GET['search'])){
+            $search = $_GET['search'];
+            $data = callApi("http://localhost/projectKTPM/api/taikhoan/search.php?search=$search");
+
+            if (isset($data['data']) && count($data['data']) > 0) {
+                $accs = $data['data'];
+                 $accsPerPage = 10;
+
+            $totalAccs = count($accs);
+    
+            $totalPages = ceil($totalAccs / $accsPerPage);
+    
+            $currentPage = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+    
+            $start = ($currentPage - 1) * $accsPerPage;
+    
+            $end = min($start + $accsPerPage, $totalAccs);
+    
+            $accsOnPage = array_slice($accs, $start, $accsPerPage);
+                require_once('Views/taikhoan/search_acc.php');
+                break;
+            } else {
+                echo "<script>
+                        alert('Không tìm thấy sản phẩm nào');
+                        window.location.href='index.php?controller=taikhoan';
+                    </script>";
+            }
+           
+        } else{
 
         $data = callApi('http://localhost/projectKTPM/api/taikhoan/get.php');
 
@@ -182,7 +211,7 @@ switch ($action) {
         $accsOnPage = array_slice($accs, $start, $accsPerPage);
         require_once('Views/taikhoan/taikhoan.php');
         break;
-    }
+    }}
 }
 
 ?>

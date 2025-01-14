@@ -100,5 +100,17 @@ class Taikhoan{
         printf("Error %s.\n" ,$stmt->error);
         return false;
     }
+    public function search(){
+        $sql = "SELECT * FROM user WHERE Id_user LIKE ? OR Fullname LIKE ? OR Email LIKE ?";
+        $stmt = $this->conn->prepare($sql);
+        $searchValue = "%" . $this->Id_user . "%";
+        $searchValue2 = "%" . $this->Fullname . "%";
+        $searchValue3 = "%" . $this->Email . "%";
+        $stmt->bindParam(1, $searchValue);
+        $stmt->bindParam(2, $searchValue2);
+        $stmt->bindParam(3, $searchValue3);
+        $stmt->execute(); 
+        return $stmt;
+    }
 }
 ?>
