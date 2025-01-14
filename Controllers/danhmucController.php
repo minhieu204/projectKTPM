@@ -92,17 +92,33 @@
             break;
         }
         default:{
+            if(isset($_GET['search'])){
+                $search = $_GET['search'];
+                $data = callApi("http://localhost/projectKTPM/api/danhmuc/search.php?search=$search");
 
-            $data = callApi('http://localhost/projectKTPM/api/danhmuc/get.php');
+                if (isset($data['data']) && count($data['data']) > 0) {
+                    $datasearch = $data['data'];
+                    require_once('Views/danhmuc/search_dm.php');
+                    break;
+                } else {
+                    echo "<script>
+                            alert('Không tìm thấy danh mục nào');
+                            window.location.href='index.php?controller=danhmuc';
+                        </script>";
+                }
+            }else{
 
-            if (isset($data['data']) && count($data['data']) > 0) {
-                $danhmucs = $data['data'];
-            } else {
-                $danhmucs = [];
-                $message = 'Không tìm thấy danh mục nào';
+                $data = callApi('http://localhost/projectKTPM/api/danhmuc/get.php');
+
+                if (isset($data['data']) && count($data['data']) > 0) {
+                    $danhmucs = $data['data'];
+                } else {
+                    $danhmucs = [];
+                    $message = 'Không tìm thấy danh mục nào';
+                }
+                require_once('Views/danhmuc/list_dm.php');
+                break;
             }
-            require_once('Views/danhmuc/list_dm.php');
-            break;
         }
     }
 

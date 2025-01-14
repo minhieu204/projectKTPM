@@ -81,6 +81,19 @@
             return false;
         }
 
+        public function search(){
+            $sql = "SELECT dm.*, l.tenloaisanpham
+                FROM tbl_danhmuccon dm
+                JOIN tbl_loaisanpham l ON dm.idloaisanpham = l.idloaisanpham
+                WHERE dm.tendanhmuccon LIKE ?
+                ORDER BY dm.iddanhmuccon DESC";
+            $stmt = $this->conn->prepare($sql);
+            $searchValue = "%" . $this->tendanhmuccon . "%";
+            $stmt->bindParam(1, $searchValue);
+            $stmt->execute(); 
+            return $stmt;
+        }
+
         public function exists() {
             $sql = "SELECT COUNT(*) FROM tbl_danhmuccon WHERE iddanhmuccon = ?";
             $stmt = $this->conn->prepare($sql);

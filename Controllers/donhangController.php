@@ -63,17 +63,32 @@
             break;
         }
         default:{
+            if(isset($_GET['search'])){
+                $search = $_GET['search'];
+                $data = callApi("http://localhost/projectKTPM/api/donhang/search.php?search=$search");
 
-            $data = callApi('http://localhost/projectKTPM/api/donhang/get.php');
+                if (isset($data['data']) && count($data['data']) > 0) {
+                    $datasearch = $data['data'];
+                    require_once('Views/donhang/search_dh.php');
+                    break;
+                } else {
+                    echo "<script>
+                            alert('Không tìm thấy đơn hàng nào');
+                            window.location.href='index.php?controller=donhang';
+                        </script>";
+                }
+            }else{
+                $data = callApi('http://localhost/projectKTPM/api/donhang/get.php');
 
-            if (isset($data['data']) && count($data['data']) > 0) {
-                $donhangs = $data['data'];
-            } else {
-                $donhangs = [];
-                $message = 'Không tìm thấy đơn hàng nào';
+                if (isset($data['data']) && count($data['data']) > 0) {
+                    $donhangs = $data['data'];
+                } else {
+                    $donhangs = [];
+                    $message = 'Không tìm thấy đơn hàng nào';
+                }
+                require_once('Views/donhang/list_dh.php');
+                break;
             }
-            require_once('Views/donhang/list_dh.php');
-            break;
         }
     }
 

@@ -64,6 +64,20 @@
             return false;
         }
 
+        public function search(){
+            $sql = "SELECT dh.*, u.Fullname, k.so_dien_thoai, k.dia_chi 
+                FROM tbl_donhang dh
+                JOIN user u ON dh.iduser = u.Id_user
+                JOIN khach_hang k ON dh.iduser = k.id
+                WHERE dh.iddonhang LIKE ?
+                ORDER BY dh.ngaydat DESC";
+            $stmt = $this->conn->prepare($sql);
+            $searchValue = "%" . $this->iddonhang . "%";
+            $stmt->bindParam(1, $searchValue);
+            $stmt->execute(); 
+            return $stmt;
+        }
+
         public function exists() {
             $sql = "SELECT COUNT(*) FROM tbl_donhang WHERE iddonhang = ?";
             $stmt = $this->conn->prepare($sql);
