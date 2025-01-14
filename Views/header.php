@@ -111,7 +111,7 @@
             <div class="ctheader">
                 <a class="" href="index.php">Xin chào, <?php echo $_SESSION['fullname'] ?></a>
             </div>
-            <?php if (isset($_GET['controller']) && in_array($_GET['controller'], ['sanpham', 'danhmuc', 'khachhang', 'donhang', 'taikhoan', 'cuahang']) && !isset($_GET['action'])): ?>
+            <?php if (isset($_GET['controller']) && in_array($_GET['controller'], ['sanpham', 'danhmuc', 'khachhang', 'donhang', 'taikhoan', 'cuahang', 'slider']) && !isset($_GET['action'])): ?>
             <div class="search-bar">
                 <form method="GET" class="d-flex align-items-center">
                     <input type="hidden" name="controller" value="<?php echo htmlspecialchars($_GET['controller']); ?>">
